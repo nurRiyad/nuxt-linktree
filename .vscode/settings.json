@@ -10,6 +10,7 @@
   "cSpell.words": [
     "antfu",
     "nuxtjs",
+    "supabase",
     "vueuse"
   ],
   "tailwindCSS.files.exclude": [

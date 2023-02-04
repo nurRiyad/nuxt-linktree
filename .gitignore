@@ -6,6 +6,7 @@ dist
 nuxt.d.ts
 .output
 .idea
+.env
 
 .yarn/*
 !.yarn/patches

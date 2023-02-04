@@ -13,13 +13,14 @@
     "@antfu/eslint-config": "^0.35.1",
     "@nuxt/image-edge": "^1.0.0-27919678.2f5b64b",
     "@nuxtjs/robots": "^3.0.0",
+    "@nuxtjs/supabase": "^0.3.0",
     "@nuxtjs/tailwindcss": "^6.3.1",
+    "@pinia/nuxt": "^0.4.6",
     "@vueuse/core": "^9.12.0",
     "@vueuse/nuxt": "^9.12.0",
     "eslint": "^8.33.0",
     "nuxt": "^3.1.2",
-    "typescript": "^4.9.5",
-    "@pinia/nuxt": "^0.4.6",
-    "pinia": "^2.0.30"
+    "pinia": "^2.0.30",
+    "typescript": "^4.9.5"
   }
 }
