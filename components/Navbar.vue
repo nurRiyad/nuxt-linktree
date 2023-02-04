@@ -18,9 +18,6 @@
               Dashboard
             </NuxtLink>
           </li>
-          <li>
-            <a>Dashboard</a>
-          </li>
         </ul>
       </div>
       <div class="navbar-end">

@@ -12,6 +12,7 @@
     "daisyui",
     "nuxtjs",
     "supabase",
+    "vuelidate",
     "vueuse"
   ],
   "tailwindCSS.files.exclude": [

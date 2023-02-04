@@ -1,4 +1,6 @@
 {
   "extends": "@antfu",
-  "rules": {}
+  "rules": {
+    "no-console": "warn"
+  }
 }
