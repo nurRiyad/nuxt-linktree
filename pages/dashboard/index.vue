@@ -30,7 +30,7 @@ const isFirstTime = computed(() => {
 </script>
 
 <template>
-  <div class="w-full flex">
+  <div class="w-full flex container max-w-7xl mx-auto px-5">
     <LoaderHero v-if="pending" />
     <FirstTime v-else-if="isFirstTime" @on-user-create="refresh" />
     <Dashboard v-else :username="user?.username" />

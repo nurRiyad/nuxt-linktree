@@ -29,7 +29,7 @@ const onLogoutClick = async () => {
 </script>
 
 <template>
-  <div class="border-b fixed w-full">
+  <div class="border-b fixed w-full bg-base-200 z-40">
     <div class="container max-w-7xl mx-auto navbar text-primary">
       <div class="navbar-start">
         <!-- Show Drop Down on Small Screen -->
