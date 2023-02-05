@@ -4,8 +4,14 @@ import { email as emailRules, minLength, required } from '@vuelidate/validators'
 
 defineEmits(['changeForm'])
 
+const superClient = useSupabaseClient()
+
 const email = ref('')
 const pass = ref('')
+
+const isLoading = ref(false)
+
+const router = useRouter()
 
 const rules = computed(() => {
   return {
@@ -17,12 +23,45 @@ const rules = computed(() => {
 const validate = useVuelidate(rules, { email, pass })
 
 const errMsg = ref('')
-const sendMail = ref(false)
 
 const onLogInClick = async () => {
-  const result = await validate.value.$validate()
-  if (result)
-    console.log('Good Value')
+  try {
+    const result = await validate.value.$validate()
+    if (result) {
+      isLoading.value = true
+
+      const { error } = await superClient.auth.signInWithPassword({
+        email: email.value,
+        password: pass.value,
+      })
+      if (error?.message)
+        errMsg.value = error.message
+      else
+        router.push('/dashboard')
+    }
+  }
+  catch (error) {
+    console.log(error)
+  }
+  isLoading.value = false
+}
+
+const onSignupWithGoogle = async () => {
+  try {
+    isLoading.value = true
+    const { error } = await superClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: 'http://localhost:3000/dashboard',
+      },
+    })
+    if (error?.message)
+      errMsg.value = error.message
+  }
+  catch (error) {
+    console.log(error)
+  }
+  isLoading.value = false
 }
 </script>
 
@@ -53,18 +92,13 @@ const onLogInClick = async () => {
           {{ validate.pass.$errors[0].$message }}
         </p>
         <button
-          class="btn btn-primary" @click="onLogInClick"
+          class="btn btn-primary" :class="{ loading: isLoading }" @click="onLogInClick"
         >
           LogIn With Email
         </button>
-        <button class="btn btn-primary gap-1">
+        <button class="btn btn-primary gap-1" :class="{ loading: isLoading }" @click="onSignupWithGoogle">
           LogIn With Google
         </button>
-        <div v-if="sendMail" class="alert alert-info shadow-lg">
-          <div>
-            <span>Check Your Mail for verification Link</span>
-          </div>
-        </div>
         <div v-if="errMsg.length > 0" class="alert alert-error shadow-lg">
           <div>
             <span>err Msg</span>

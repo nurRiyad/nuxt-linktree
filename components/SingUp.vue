@@ -5,13 +5,12 @@ import { email as emailRules, minLength, required, sameAs } from '@vuelidate/val
 defineEmits(['changeForm'])
 
 const superClient = useSupabaseClient()
-const user = useSupabaseUser()
-
-console.log(user.value)
 
 const email = ref('')
 const confirmEmail = ref('')
 const pass = ref('')
+
+const isLoading = ref(false)
 
 const rules = computed(() => {
   return {
@@ -30,17 +29,39 @@ const onSignUpClick = async () => {
   try {
     const result = await validate.value.$validate()
     if (result) {
-      const resp = await superClient.auth.signUp({
+      isLoading.value = true
+      const { error } = await superClient.auth.signUp({
         email: email.value,
         password: pass.value,
       })
-
-      console.log(resp)
+      if (error?.message)
+        errMsg.value = error.message
+      else
+        sendMail.value = true
     }
   }
   catch (error) {
-
+    console.log(error)
   }
+  isLoading.value = false
+}
+
+const onSignupWithGoogle = async () => {
+  try {
+    isLoading.value = true
+    const { data, error } = await superClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: 'http://localhost:3000/dashboard',
+      },
+    })
+    if (error?.message)
+      errMsg.value = error.message
+  }
+  catch (error) {
+    console.log(error)
+  }
+  isLoading.value = false
 }
 </script>
 
@@ -80,11 +101,11 @@ const onSignUpClick = async () => {
           {{ validate.pass.$errors[0].$message }}
         </p>
         <button
-          class="btn btn-primary" @click="onSignUpClick"
+          class="btn btn-primary" :class="{ loading: isLoading }" @click="onSignUpClick"
         >
           Sign Up With Email
         </button>
-        <button class="btn btn-primary gap-1">
+        <button class="btn btn-primary gap-1" :class="{ loading: isLoading }" @click="onSignupWithGoogle">
           SignIn With Google
         </button>
         <div v-if="sendMail" class="alert alert-info shadow-lg">
