@@ -37,7 +37,7 @@ const onLogInClick = async () => {
       if (error?.message)
         errMsg.value = error.message
       else
-        router.push('/dashboard')
+        router.push('/')
     }
   }
   catch (error) {
@@ -52,7 +52,7 @@ const onSignupWithGoogle = async () => {
     const { error } = await superClient.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: 'http://localhost:3000/dashboard',
+        redirectTo: 'http://localhost:3000/',
       },
     })
     if (error?.message)

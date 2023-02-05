@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const showSignUp = ref(true)
+const showSignUp = ref(false)
 </script>
 
 <template>

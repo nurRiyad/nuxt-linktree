@@ -39,11 +39,13 @@ const onLogoutClick = async () => {
         </NuxtLink>
       </div>
       <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
+        <ul class="menu menu-horizontal px-1 space-x-3">
           <li>
             <NuxtLink to="/">
               Home
             </NuxtLink>
+          </li>
+          <li>
             <NuxtLink v-if="isLoggedIn" to="/dashboard">
               Dashboard
             </NuxtLink>
