@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer footer-center p-10 mt-10 border-t">
+  <footer class="footer footer-center p-10  border-t">
     <div>
       <img class="w-12 rounded-full" src="https://www.nurriyad.xyz/_nuxt/profilepic.e7877b41.webp" alt="riyad profile img">
       <p class="font-bold">

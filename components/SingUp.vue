@@ -70,7 +70,7 @@ const onSignupWithGoogle = async () => {
     <div class="flex justify-center h-full items-center ">
       <div class="flex flex-col space-y-4 p-10 m-5 bg-base-200 rounded-lg shadow-md">
         <h1 class="text-lg text-center text-primary">
-          Create New Account
+          Create A New Account
         </h1>
 
         <input

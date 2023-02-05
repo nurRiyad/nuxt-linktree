@@ -1,7 +1,7 @@
 <template>
-  <div class="gd-container">
+  <div class="gd-container bg-base-200">
     <Navbar />
-    <div class="pt-20">
+    <div class="pt-16 flex">
       <slot />
     </div>
     <Footer />
