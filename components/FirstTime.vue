@@ -1,29 +1,69 @@
 <script setup lang="ts">
-const user = useSupabaseUser()
+import { minLength, required } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
+import type { Database } from '@/types/supabase'
 
-const router = useRouter()
+const emit = defineEmits(['onUserCreate'])
 
-const onGetStartClick = () => {
-  if (user.value)
-    router.push('/dashboard')
+const supabseClient = useSupabaseClient<Database>()
+const supabaseUser = useSupabaseUser()
 
-  else router.push('/auth')
+const userName = ref('')
+
+const rules = computed(() => {
+  return {
+    userName: { required, minLength: minLength(3) },
+  }
+})
+
+const validate = useVuelidate(rules, { userName })
+
+const onUserCreateClick = async () => {
+  try {
+    const result = await validate.value.$validate()
+    if (result)
+      console.log(userName.value)
+    const { error } = await supabseClient
+      .from('topten_users')
+      .insert({ username: userName.value, uid: supabaseUser.value?.id || '', full_name: userName.value })
+
+    if (error)
+      console.log(error)
+    else
+      emit('onUserCreate')
+  }
+  catch (error) {
+    console.log(error)
+  }
 }
 </script>
 
 <template>
   <div class="hero">
     <div class="hero-content text-center">
-      <div class="max-w-lg">
+      <div class="max-w-xl">
         <h1 class="text-5xl font-bold">
-          Top Twenty
+          Welcome!
         </h1>
         <p class="py-6">
-          A web app built with Nuxt.js v3, Supabase, Prisma and Tailwind CSS. Users can log in and create their own Top 20 lists (e.g. songs, movies, anime) and share them publicly.
+          Looks like you are here for the very first time. No worries first create username to proceed further
         </p>
-        <button class="btn btn-primary" @click="onGetStartClick">
-          Get Started
-        </button>
+        <div class="space-x-3 flex justify-center">
+          <div>
+            <input
+              v-model="userName"
+              type="email"
+              placeholder="Enter Your UserName"
+              class="input input-bordered input-primary w-full max-w-xs"
+            >
+            <p v-if="validate?.userName?.$error" class="text-error text-sm mt-2">
+              {{ validate.userName.$errors[0].$message }}
+            </p>
+          </div>
+          <button class="btn btn-primary" @click="onUserCreateClick">
+            Create
+          </button>
+        </div>
       </div>
     </div>
   </div>
