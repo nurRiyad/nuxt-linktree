@@ -1,9 +1,25 @@
 <script setup lang="ts">
+import type { Database } from '@/types/supabase'
+
 interface Props {
   username: string
 }
 const props = withDefaults(defineProps<Props>(), {
   username: '',
+})
+
+const superClient = useSupabaseClient<Database>()
+
+const { data: collection, pending, refresh } = await useLazyAsyncData('get-collection', async () => {
+  const { data, error } = await superClient
+    .from('topten_collections')
+    .select('name')
+    .eq('user', props.username)
+
+  if (error)
+    console.log(error)
+
+  return data
 })
 </script>
 
@@ -18,8 +34,8 @@ const props = withDefaults(defineProps<Props>(), {
       </button>
     </div>
     <div class="w-full mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5">
-      <div v-for="n in 10" :key="n">
-        <DashCard />
+      <div v-for="c in collection" :key="c.name">
+        <DashCard :name="c.name" :user="username" />
       </div>
     </div>
   </div>
