@@ -4,7 +4,7 @@ import type { Database } from '@/types/supabase'
 const superClient = useSupabaseClient<Database>()
 const supabaseUser = useSupabaseUser()
 
-const { data: user, pending, refresh } = await useLazyAsyncData('get-user', async () => {
+const { data: user, pending, refresh } = await useAsyncData('get-user', async () => {
   const { data, error } = await superClient
     .from('users')
     .select('user_name')
