@@ -1,20 +1,20 @@
 <script setup lang="ts">
 interface Props {
-  name: string
+  userName: string
+  collectionName: string
   description?: string
-  user: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  name: 'no name',
+  userName: 'no name',
+  collectionName: '-',
   description: 'no des',
-  user: '-',
 })
 
 const router = useRouter()
 
 const onEditClick = () => {
-  router.push(`/dashboard/${props.name}`)
+  router.push(`/dashboard/${props.userName}/${props.collectionName}`)
 }
 </script>
 
@@ -22,7 +22,7 @@ const onEditClick = () => {
   <div className="card  bg-base-100 shadow-xl">
     <div className="card-body">
       <h2 className="card-title">
-        {{ name }}
+        {{ collectionName }}
       </h2>
       <p>{{ description }}</p>
       <div className="card-actions justify-end">

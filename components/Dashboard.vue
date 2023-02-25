@@ -12,9 +12,9 @@ const superClient = useSupabaseClient<Database>()
 
 const { data: collection, pending, refresh } = await useLazyAsyncData('get-collection', async () => {
   const { data, error } = await superClient
-    .from('topten_collections')
-    .select('name')
-    .eq('user', props.username)
+    .from('collections')
+    .select('user_name, collection_name, description')
+    .eq('user_name', props.username)
 
   if (error)
     console.log(error)
@@ -34,8 +34,8 @@ const { data: collection, pending, refresh } = await useLazyAsyncData('get-colle
       </button>
     </div>
     <div class="w-full mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5">
-      <div v-for="c in collection" :key="c.name">
-        <DashCard :name="c.name" :user="username" />
+      <div v-for="c in collection" :key="c.collection_name">
+        <DashCard :collection-name="c.collection_name" :user-name="c.user_name" :description="c.description" />
       </div>
     </div>
   </div>

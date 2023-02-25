@@ -25,3 +25,5 @@ src-tauri
 auto-imports.d.ts
 components.d.ts
 dist
+.yarn
+.yarnrc.yaml

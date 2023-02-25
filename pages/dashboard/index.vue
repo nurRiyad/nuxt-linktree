@@ -6,9 +6,9 @@ const supabaseUser = useSupabaseUser()
 
 const { data: user, pending, refresh } = await useLazyAsyncData('get-user', async () => {
   const { data, error } = await superClient
-    .from('topten_users')
-    .select('username, full_name')
-    .eq('uid', supabaseUser.value?.id)
+    .from('users')
+    .select('user_name')
+    .eq('auth_uid', supabaseUser.value?.id)
 
   if (error)
     console.log(error)
@@ -16,14 +16,14 @@ const { data: user, pending, refresh } = await useLazyAsyncData('get-user', asyn
   if (data) {
     if (data.length === 0)
       return {}
-    const { username, full_name } = data[0]
-    return { username, full_name }
+    const { user_name } = data[0]
+    return { user_name }
   }
   else { return {} }
 })
 
 const isFirstTime = computed(() => {
-  if (user.value?.username)
+  if (user.value?.user_name)
     return false
   else return true
 })
@@ -33,6 +33,6 @@ const isFirstTime = computed(() => {
   <div class="w-full flex container max-w-7xl mx-auto px-5">
     <LoaderHero v-if="pending" />
     <FirstTime v-else-if="isFirstTime" @on-user-create="refresh" />
-    <Dashboard v-else :username="user?.username" />
+    <Dashboard v-else :username="user?.user_name" />
   </div>
 </template>

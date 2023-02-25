@@ -60,7 +60,7 @@ const onLogoutClick = async () => {
           <label tabindex="0" class="btn btn-ghost btn-circle avatar">
             <div class="w-10 rounded-full ring-2">
               <img
-                src="https://www.nurriyad.xyz/_nuxt/profilepic.e7877b41.webp"
+                src="/rsz_1riyad.jpg"
               >
             </div>
           </label>

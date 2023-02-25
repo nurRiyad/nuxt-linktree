@@ -24,8 +24,8 @@ const onUserCreateClick = async () => {
     if (result)
       console.log(userName.value)
     const { error } = await supabseClient
-      .from('topten_users')
-      .insert({ username: userName.value, uid: supabaseUser.value?.id || '', full_name: userName.value })
+      .from('users')
+      .insert({ user_name: userName.value, auth_uid: supabaseUser.value?.id || '' })
 
     if (error)
       console.log(error)
