@@ -7,23 +7,12 @@ const route = useRoute()
 const collection = computed(() => route.params.collection as string || '')
 const user = computed(() => route.params.user as string || '')
 
-const { data: links, pending, refresh: reFetchLink } = await useAsyncData('get-links', async () => {
-  const { data, error } = await superClient
-    .from('links')
-    .select('name, url')
-    .eq('user_name', user.value)
-    .eq('collection_name', collection.value)
-
-  if (error)
-    console.log(error)
-
-  return data || []
-})
-
 const showModal = ref(false)
 const linkName = ref('')
 const linkUrl = ref('')
 const isCreating = ref(false)
+
+const { data: links, refresh: reFetchLink } = await useFetch(`/api/link?uname=${user.value}&cname=${collection.value}`)
 
 const onAddClick = async () => {
   try {
@@ -51,11 +40,18 @@ const onAddClick = async () => {
       <p class="text-lg md:text-2xl  lg:text-5xl font-bold">
         Top Ten {{ collection }} of {{ user }}
       </p>
-      <button
-        class="btn btn-sm md:btn-md  btn-primary" @click="showModal = !showModal"
-      >
-        Create
-      </button>
+      <div class="space-x-4">
+        <NuxtLink
+          class="btn btn-sm md:btn-md  btn-primary" :to="`/${user}/${collection}`"
+        >
+          Preview
+        </NuxtLink>
+        <button
+          class="btn btn-sm md:btn-md  btn-primary" @click="showModal = !showModal"
+        >
+          Create
+        </button>
+      </div>
     </div>
     <div class="mx-auto w-full space-y-5 mt-10">
       <template v-for="link in links" :key="link.id">

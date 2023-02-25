@@ -1,11 +1,13 @@
 <script setup lang="ts">
 definePageMeta({
-  layout: 'list',
+  layout: 'forofour',
 })
 </script>
 
 <template>
   <div>
-    <h1>{{ $route.params.user }}</h1>
+    <h1 class="text-5xl">
+      No Page Found
+    </h1>
   </div>
 </template>

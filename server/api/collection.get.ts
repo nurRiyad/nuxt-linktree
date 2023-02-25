@@ -4,13 +4,11 @@ export default eventHandler(async (event) => {
   const query = getQuery(event)
 
   const userName = query.uname || ''
-  const collectionName = query.cname || ''
 
   const { data, error } = await supabaseClient
-    .from('links')
-    .select('name, url')
+    .from('collections')
+    .select('user_name, collection_name, description')
     .eq('user_name', userName)
-    .eq('collection_name', collectionName)
 
   if (error)
     return []

@@ -10,22 +10,12 @@ const props = withDefaults(defineProps<Props>(), {
 
 const superClient = useSupabaseClient<Database>()
 
-const { data: collection, pending, refresh: reFetchCollection } = await useLazyAsyncData('get-collection', async () => {
-  const { data, error } = await superClient
-    .from('collections')
-    .select('user_name, collection_name, description')
-    .eq('user_name', props.username)
-
-  if (error)
-    console.log(error)
-
-  return data
-})
-
 const showModal = ref(false)
 const collectinName = ref('')
 const collectionDes = ref('')
 const isCreating = ref(false)
+
+const { data: collection, refresh: reFetchCollection } = await useFetch(`/api/collection?uname=${props.username}`)
 
 const onAddClick = async () => {
   try {
