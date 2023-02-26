@@ -10,8 +10,7 @@ const email = ref('')
 const pass = ref('')
 
 const isLoading = ref(false)
-
-const router = useRouter()
+const isLoadingGoogle = ref(false)
 
 const rules = computed(() => {
   return {
@@ -36,8 +35,6 @@ const onLogInClick = async () => {
       })
       if (error?.message)
         errMsg.value = error.message
-      else
-        router.push('/')
     }
   }
   catch (error) {
@@ -48,11 +45,11 @@ const onLogInClick = async () => {
 
 const onSignupWithGoogle = async () => {
   try {
-    isLoading.value = true
+    isLoadingGoogle.value = true
     const { error } = await superClient.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: 'http://localhost:3000/',
+        redirectTo: 'http://localhost:3000/confirm',
       },
     })
     if (error?.message)
@@ -61,7 +58,7 @@ const onSignupWithGoogle = async () => {
   catch (error) {
     console.log(error)
   }
-  isLoading.value = false
+  isLoadingGoogle.value = false
 }
 </script>
 
@@ -96,7 +93,7 @@ const onSignupWithGoogle = async () => {
         >
           LogIn With Email
         </button>
-        <button class="btn btn-primary gap-1" :class="{ loading: isLoading }" @click="onSignupWithGoogle">
+        <button class="btn btn-primary gap-1" :class="{ loading: isLoadingGoogle }" @click="onSignupWithGoogle">
           LogIn With Google
         </button>
         <div v-if="errMsg.length > 0" class="alert alert-error shadow-lg">

@@ -4,6 +4,10 @@ import type { Database } from '@/types/supabase'
 const superClient = useSupabaseClient<Database>()
 const supabaseUser = useSupabaseUser()
 
+definePageMeta({
+  middleware: ['dashboard-auth'],
+})
+
 const { data: user, pending, refresh } = await useAsyncData('get-user', async () => {
   const { data, error } = await superClient
     .from('users')

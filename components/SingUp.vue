@@ -11,6 +11,7 @@ const confirmEmail = ref('')
 const pass = ref('')
 
 const isLoading = ref(false)
+const isLoadingGoogle = ref(false)
 
 const rules = computed(() => {
   return {
@@ -48,11 +49,11 @@ const onSignUpClick = async () => {
 
 const onSignupWithGoogle = async () => {
   try {
-    isLoading.value = true
-    const { data, error } = await superClient.auth.signInWithOAuth({
+    isLoadingGoogle.value = true
+    const { error } = await superClient.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: 'http://localhost:3000/dashboard',
+        redirectTo: 'http://localhost:3000/confirm',
       },
     })
     if (error?.message)
@@ -61,7 +62,7 @@ const onSignupWithGoogle = async () => {
   catch (error) {
     console.log(error)
   }
-  isLoading.value = false
+  isLoadingGoogle.value = false
 }
 </script>
 
@@ -105,7 +106,7 @@ const onSignupWithGoogle = async () => {
         >
           Sign Up With Email
         </button>
-        <button class="btn btn-primary gap-1" :class="{ loading: isLoading }" @click="onSignupWithGoogle">
+        <button class="btn btn-primary gap-1" :class="{ loading: isLoadingGoogle }" @click="onSignupWithGoogle">
           SignIn With Google
         </button>
         <div v-if="sendMail" class="alert alert-info shadow-lg">

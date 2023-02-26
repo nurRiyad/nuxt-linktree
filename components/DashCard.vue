@@ -19,14 +19,14 @@ const onEditClick = () => {
 </script>
 
 <template>
-  <div className="card  bg-base-100 shadow-xl">
-    <div className="card-body">
-      <h2 className="card-title">
+  <div class="card  bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">
         {{ collectionName }}
       </h2>
       <p>{{ description }}</p>
-      <div className="card-actions justify-end">
-        <button className="btn btn-primary" @click="onEditClick">
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary" @click="onEditClick">
           Edit Now
         </button>
       </div>
