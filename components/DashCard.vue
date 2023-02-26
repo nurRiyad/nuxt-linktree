@@ -10,8 +10,10 @@ const props = withDefaults(defineProps<Props>(), {
   collectionName: '-',
   description: 'no des',
 })
+defineEmits(['reFetchCollection'])
 
 const router = useRouter()
+const showModal = ref(false)
 
 const onEditClick = () => {
   router.push(`/dashboard/${props.userName}/${props.collectionName}`)
@@ -26,10 +28,20 @@ const onEditClick = () => {
       </h2>
       <p>{{ description }}</p>
       <div class="card-actions justify-end">
+        <button class="btn btn-sm md:btn-md btn-error" @click="$event => showModal = !showModal">
+          Delete
+        </button>
         <button class="btn btn-sm md:btn-md btn-primary" @click="onEditClick">
-          Edit Now
+          Edit
         </button>
       </div>
     </div>
+    <ModalsDeleteCollection
+      :user-name="userName"
+      :collection-name="collectionName"
+      :show-modal="showModal"
+      @close-modal="$emit => showModal = false"
+      @re-fetch-collection="$event => $emit('reFetchCollection')"
+    />
   </div>
 </template>

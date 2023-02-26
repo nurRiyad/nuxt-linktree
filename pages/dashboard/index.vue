@@ -1,30 +1,11 @@
 <script setup lang="ts">
-import type { Database } from '@/types/supabase'
-
-const superClient = useSupabaseClient<Database>()
 const supabaseUser = useSupabaseUser()
 
 definePageMeta({
   middleware: ['dashboard-auth'],
 })
 
-const { data: user, pending, refresh } = await useAsyncData('get-user', async () => {
-  const { data, error } = await superClient
-    .from('users')
-    .select('user_name')
-    .eq('auth_uid', supabaseUser.value?.id)
-
-  if (error)
-    console.log(error)
-
-  if (data) {
-    if (data.length === 0)
-      return {}
-    const { user_name } = data[0]
-    return { user_name }
-  }
-  else { return {} }
-})
+const { data: user, pending, refresh } = await useFetch(`/api/user?uid=${supabaseUser.value?.id}`)
 
 const isFirstTime = computed(() => {
   if (user.value?.user_name)

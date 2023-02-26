@@ -2,6 +2,11 @@
 import type { Database } from '@/types/supabase'
 
 const superClient = useSupabaseClient<Database>()
+const supabaseUser = useSupabaseUser()
+
+definePageMeta({
+  middleware: ['dashboard-auth'],
+})
 
 const route = useRoute()
 const collection = computed(() => route.params.collection as string || '')
@@ -12,6 +17,11 @@ const linkName = ref('')
 const linkUrl = ref('')
 const isCreating = ref(false)
 
+const { data: userinfo } = await useFetch(`/api/user?uid=${supabaseUser.value?.id}`)
+
+if (userinfo.value?.user_name !== user.value)
+  navigateTo('/dashboard')
+
 const { data: links, refresh: reFetchLink } = await useFetch(`/api/link?uname=${user.value}&cname=${collection.value}`)
 
 const onAddClick = async () => {
@@ -20,7 +30,13 @@ const onAddClick = async () => {
     const { error } = await superClient
       .from('links')
       .insert([
-        { user_name: user.value, collection_name: collection.value, name: linkName.value, url: linkUrl.value },
+        {
+          user_name: user.value,
+          user_id: supabaseUser.value?.id,
+          collection_name: collection.value,
+          name: linkName.value,
+          url: linkUrl.value,
+        },
       ])
     if (!error) {
       reFetchLink()

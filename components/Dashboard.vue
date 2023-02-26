@@ -9,6 +9,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const superClient = useSupabaseClient<Database>()
+const supabaseUser = useSupabaseUser()
 
 const showModal = ref(false)
 const collectinName = ref('')
@@ -23,7 +24,12 @@ const onAddClick = async () => {
     const { error } = await superClient
       .from('collections')
       .insert([
-        { user_name: props.username, collection_name: collectinName.value, description: collectinName.value },
+        {
+          user_name: props.username,
+          user_id: supabaseUser.value?.id,
+          collection_name: collectinName.value,
+          description: collectinName.value,
+        },
       ])
     if (!error) {
       reFetchCollection()
@@ -51,7 +57,12 @@ const onAddClick = async () => {
     </div>
     <div class="w-full mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5">
       <div v-for="c in collection" :key="c.collection_name">
-        <DashCard :collection-name="c.collection_name" :user-name="c.user_name" :description="c.description" />
+        <DashCard
+          :collection-name="c.collection_name"
+          :user-name="c.user_name"
+          :description="c.description"
+          @re-fetch-collection="$event => reFetchCollection()"
+        />
       </div>
     </div>
     <!-- Put this part before </body> tag -->
