@@ -27,5 +27,10 @@ if (!links.value || links.value.length === 0)
         <a :href="link.url" class="block px-5 py-5 text-center shadow-sm rounded-lg hover:scale-[1.02] transition-all ease-out border-2 border-white" target="_blank">{{ link.name }}</a>
       </template>
     </div>
+    <div class="flex justify-center ">
+      <NuxtLink to="/" class="underline decoration-1 decoration-white">
+        Nuxt LinkTree
+      </NuxtLink>
+    </div>
   </div>
 </template>
