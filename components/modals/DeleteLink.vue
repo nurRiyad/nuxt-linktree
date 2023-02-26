@@ -3,14 +3,14 @@ interface Props {
   showModal: boolean
   collectionName: string
   userName: string
-  linkId: string
+  linkId: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
   showModal: false,
   collectionName: '-',
   userName: '-',
-  linkId: '-',
+  linkId: 0,
 })
 
 const emit = defineEmits(['closeModal', 'reFetch'])

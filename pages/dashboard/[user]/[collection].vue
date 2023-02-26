@@ -18,20 +18,20 @@ const { data: userinfo } = await useFetch(`/api/user?uid=${supabaseUser.value?.i
 if (userinfo.value?.user_name !== user.value)
   navigateTo('/dashboard')
 
-const { data: links, refresh: reFetchLink } = await useFetch(`/api/link?uname=${user.value}&cname=${collection.value}`)
+const { data: links, pending: linkLoading, refresh: reFetchLink } = await useFetch(`/api/link?uname=${user.value}&cname=${collection.value}`)
 
-const activeLinkId = ref('')
+const activeLinkId = ref(0)
 const activeLink = computed(() => {
-  const acLink = links.value?.find(el => el.id)
+  const acLink = links.value?.find(el => el.id === activeLinkId.value)
   return acLink
 })
 
-const onEditLinkClick = (id: string) => {
+const onEditLinkClick = (id: number) => {
   activeLinkId.value = id
   showEditModal.value = !showEditModal.value
 }
 
-const onDeleteClick = (id: string) => {
+const onDeleteClick = (id: number) => {
   activeLinkId.value = id
   showDeleteModal.value = !showCreateModal.value
 }
@@ -56,21 +56,19 @@ const onDeleteClick = (id: string) => {
         </button>
       </div>
     </div>
-    <div class="mx-auto w-full space-y-5 mt-10">
+    <div v-if="linkLoading" class="mx-auto w-full space-y-5 mt-10">
+      <template v-for="n in 4" :key="n">
+        <LoaderLink />
+      </template>
+    </div>
+    <div v-else class="mx-auto w-full space-y-5 mt-10">
       <template v-for="link in links" :key="link.id">
-        <div class="px-5 py-5 bg-base-100 rounded-lg hover:shadow-lg transition-all ease-out flex justify-between">
-          <div>
-            <a :href="link.url" target="_blank">{{ link.name }}</a>
-          </div>
-          <div class="space-x-3">
-            <button class="btn btn-sm  btn-primary" @click="onEditLinkClick(link.id)">
-              Edit
-            </button>
-            <button class="btn btn-sm  btn-error" @click="onDeleteClick(link.id)">
-              Delete
-            </button>
-          </div>
-        </div>
+        <LinkCard
+          :url="link.url"
+          :name="link.name"
+          @edit-click="onEditLinkClick(link.id)"
+          @delete-click="onDeleteClick(link.id)"
+        />
       </template>
     </div>
     <ModalsCreateLink

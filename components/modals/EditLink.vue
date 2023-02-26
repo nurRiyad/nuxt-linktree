@@ -7,7 +7,7 @@ interface Props {
   userName: string
   linkName: string
   linkUrl: string
-  linkId: string
+  linkId: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -16,15 +16,21 @@ const props = withDefaults(defineProps<Props>(), {
   userName: '-',
   linkName: '-',
   linkUrl: '-',
-  linkId: '-',
+  linkId: 0,
 })
 const emit = defineEmits(['closeModal', 'reFetch'])
 const superClient = useSupabaseClient<Database>()
-const supabaseUser = useSupabaseUser()
 
-const linkName = ref(props.linkName)
-const linkUrl = ref(props.linkUrl)
+const linkNameModal = ref('')
+const linkUrlModal = ref('')
 const isUpdating = ref(false)
+
+watchEffect(() => {
+  if (props.linkName)
+    linkNameModal.value = props.linkName
+  if (props.linkUrl)
+    linkUrlModal.value = props.linkUrl
+})
 
 const onUpdateClick = async () => {
   try {
@@ -32,7 +38,7 @@ const onUpdateClick = async () => {
 
     const { error } = await superClient
       .from('links')
-      .update({ name: linkName.value, url: linkUrl.value })
+      .update({ name: linkNameModal.value, url: linkUrlModal.value })
       .eq('user_name', props.userName)
       .eq('collection_name', props.collectionName)
       .eq('id', props.linkId)
@@ -66,13 +72,13 @@ const onUpdateClick = async () => {
 
       <div class="py-4 flex flex-col space-y-3">
         <input
-          v-model="linkName"
+          v-model="linkNameModal"
           type="text"
           placeholder="Name"
           class="input input-bordered input-primary w-full"
         >
         <input
-          v-model="linkUrl"
+          v-model="linkUrlModal"
           type="text"
           placeholder="URL"
           class="input input-bordered input-primary w-full"

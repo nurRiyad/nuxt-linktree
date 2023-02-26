@@ -16,7 +16,7 @@ const collectinName = ref('')
 const collectionDes = ref('')
 const isCreating = ref(false)
 
-const { data: collection, refresh: reFetchCollection } = await useFetch(`/api/collection?uname=${props.username}`)
+const { data: collection, pending, refresh: reFetchCollection } = await useFetch(`/api/collection?uname=${props.username}`)
 
 const onAddClick = async () => {
   try {
@@ -55,7 +55,13 @@ const onAddClick = async () => {
         Create
       </button>
     </div>
-    <div class="w-full mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5">
+    <div v-if="pending" class="w-full mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5">
+      <div v-for="n in 4" :key="n">
+        <LoaderCollection />
+      </div>
+    </div>
+
+    <div v-else class="w-full mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5">
       <div v-for="c in collection" :key="c.collection_name">
         <DashCard
           :collection-name="c.collection_name"
