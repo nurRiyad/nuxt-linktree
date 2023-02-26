@@ -10,7 +10,7 @@ const onGetStartClick = () => {
   <div class="hero">
     <div class="hero-content text-center">
       <div class="max-w-lg">
-        <h1 class="text-5xl font-bold">
+        <h1 class="text-5xl font-bold text-primary">
           Nuxt LinkTree
         </h1>
         <p class="py-6">

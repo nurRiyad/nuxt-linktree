@@ -26,7 +26,7 @@ const onEditClick = () => {
       </h2>
       <p>{{ description }}</p>
       <div class="card-actions justify-end">
-        <button class="btn btn-primary" @click="onEditClick">
+        <button class="btn btn-sm md:btn-md btn-primary" @click="onEditClick">
           Edit Now
         </button>
       </div>

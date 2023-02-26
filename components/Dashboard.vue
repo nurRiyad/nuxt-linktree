@@ -40,7 +40,7 @@ const onAddClick = async () => {
 <template>
   <div class="mt-10 w-full">
     <div class="flex  text-primary space-x-5 justify-between border-b-2 md:border-b-4 border-b-primary pb-3">
-      <p class="text-lg md:text-2xl  lg:text-5xl font-bold">
+      <p class="text-lg md:text-2xl  lg:text-3xl font-bold">
         All Collections
       </p>
       <button
