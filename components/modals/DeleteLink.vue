@@ -3,15 +3,17 @@ interface Props {
   showModal: boolean
   collectionName: string
   userName: string
+  linkId: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   showModal: false,
   collectionName: '-',
   userName: '-',
+  linkId: '-',
 })
 
-const emit = defineEmits(['closeModal', 'reFetchCollection'])
+const emit = defineEmits(['closeModal', 'reFetch'])
 
 const supabaseClient = useSupabaseClient()
 const isDeleting = ref(false)
@@ -25,14 +27,10 @@ const onDeleteClick = async () => {
       .delete()
       .eq('user_name', props.userName)
       .eq('collection_name', props.collectionName)
+      .eq('id', props.linkId)
 
-    const { error: collectionError } = await supabaseClient
-      .from('collections')
-      .delete()
-      .eq('user_name', props.userName)
-      .eq('collection_name', props.collectionName)
-    if (!linkError && !collectionError) {
-      emit('reFetchCollection')
+    if (!linkError) {
+      emit('reFetch')
       emit('closeModal')
     }
   }
@@ -60,8 +58,7 @@ const onDeleteClick = async () => {
 
       <div class="py-4 flex flex-col space-y-3">
         <p>
-          Deleting collection named
-          <span class="underline text-error font-semibold">@{{ userName }}/{{ collectionName }}</span> ?
+          Proced To Delete This Link ?
         </p>
       </div>
       <div class="flex justify-end">

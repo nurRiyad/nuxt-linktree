@@ -8,7 +8,7 @@ export default eventHandler(async (event) => {
 
   const { data, error } = await supabaseClient
     .from('links')
-    .select('name, url')
+    .select('name, url, id')
     .eq('user_name', userName)
     .eq('collection_name', collectionName)
 
