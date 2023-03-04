@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxtjs/supabase',
     'nuxt-icon',
+    '@nuxtjs/robots',
   ],
 
 })
