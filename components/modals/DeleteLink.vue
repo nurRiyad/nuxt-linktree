@@ -58,7 +58,7 @@ const onDeleteClick = async () => {
 
       <div class="py-4 flex flex-col space-y-3">
         <p>
-          Proced To Delete This Link ?
+          Proceed To <span class="text-error">Delete</span> This Link ?
         </p>
       </div>
       <div class="flex justify-end">

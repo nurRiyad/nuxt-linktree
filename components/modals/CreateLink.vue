@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { required } from '@vuelidate/validators'
+import useVuelidate from '@vuelidate/core'
 import type { Database } from '@/types/supabase'
 
 const props = withDefaults(defineProps<Props>(), {
@@ -20,23 +22,35 @@ const linkName = ref('')
 const linkUrl = ref('')
 const isCreating = ref(false)
 
+const rules = computed(() => {
+  return {
+    linkName: { required },
+    linkUrl: { required },
+  }
+})
+
+const validate = useVuelidate(rules, { linkName, linkUrl })
+
 const onAddClick = async () => {
   try {
     isCreating.value = true
-    const { error } = await superClient
-      .from('links')
-      .insert([
-        {
-          user_name: props.userName,
-          user_id: supabaseUser.value?.id,
-          collection_name: props.collectionName,
-          name: linkName.value,
-          url: linkUrl.value,
-        },
-      ])
-    if (!error) {
-      emit('reFetch')
-      emit('closeModal')
+    const result = await validate.value.$validate()
+    if (result) {
+      const { error } = await superClient
+        .from('links')
+        .insert([
+          {
+            user_name: props.userName,
+            user_id: supabaseUser.value?.id,
+            collection_name: props.collectionName,
+            name: linkName.value,
+            url: linkUrl.value,
+          },
+        ])
+      if (!error) {
+        emit('reFetch')
+        emit('closeModal')
+      }
     }
   }
   catch (error) {
@@ -68,6 +82,9 @@ const onAddClick = async () => {
           placeholder="Name"
           class="input input-bordered input-primary w-full"
         >
+        <p v-if="validate.linkName.$error" class="text-error text-sm m-0">
+          {{ validate.linkName.$errors[0].$message }}
+        </p>
         <input
           v-model="linkUrl"
           type="text"
@@ -75,6 +92,9 @@ const onAddClick = async () => {
           class="input input-bordered input-primary w-full"
         >
       </div>
+      <p v-if="validate.linkUrl.$error" class="text-error text-sm m-0">
+        {{ validate.linkUrl.$errors[0].$message }}
+      </p>
       <div class="flex justify-end">
         <button
           class="btn btn-primary"

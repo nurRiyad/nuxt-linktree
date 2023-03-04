@@ -62,6 +62,9 @@ const onDeleteClick = (id: number) => {
       </template>
     </div>
     <div v-else class="mx-auto w-full space-y-5 mt-10">
+      <template v-if="!links || links.length === 0">
+        <EmptyLinkCard />
+      </template>
       <template v-for="link in links" :key="link.id">
         <LinkCard
           :url="link.url"

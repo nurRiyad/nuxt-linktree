@@ -23,16 +23,19 @@ const onEditClick = () => {
 <template>
   <div class="card  bg-base-100 shadow-xl">
     <div class="card-body">
-      <h2 class="card-title">
+      <NuxtLink :to="`/dashboard/${userName}/${collectionName}`" class="card-title">
         {{ collectionName }}
-      </h2>
+      </NuxtLink>
       <p>{{ description }}</p>
       <div class="card-actions justify-end">
         <button class="btn btn-sm md:btn-md btn-error" @click="$event => showModal = !showModal">
           Delete
         </button>
         <button class="btn btn-sm md:btn-md btn-primary" @click="onEditClick">
-          Edit
+          <div class="flex space-x-1 items-center">
+            <p>Go</p>
+            <Icon name="heroicons:arrow-small-right-20-solid" />
+          </div>
         </button>
       </div>
     </div>
