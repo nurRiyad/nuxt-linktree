@@ -27,8 +27,9 @@ const onResetClick = async () => {
     const result = await validate.value.$validate()
 
     if (result) {
+      // for dev http://localhost:3000/reset
       const { error } = await supabaseClient.auth.resetPasswordForEmail(email.value, {
-        redirectTo: 'http://localhost:3000/reset',
+        redirectTo: 'https://nuxt-linktree.vercel.app/reset',
       })
 
       if (error) {

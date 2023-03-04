@@ -48,11 +48,12 @@ const onLogInClick = async () => {
 
 const onSignupWithGoogle = async () => {
   try {
+    // for dev http://localhost:3000/confirm
     isLoadingGoogle.value = true
     const { error } = await superClient.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: 'http://localhost:3000/confirm',
+        redirectTo: 'https://nuxt-linktree.vercel.app/confirm',
       },
     })
     if (error) {

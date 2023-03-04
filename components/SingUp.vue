@@ -31,11 +31,12 @@ const onSignUpClick = async () => {
     const result = await validate.value.$validate()
     if (result) {
       isLoading.value = true
+      // for dev http://localhost:3000/confirm
       const { error } = await superClient.auth.signUp({
         email: email.value,
         password: pass.value,
         options: {
-          emailRedirectTo: 'http://localhost:3000/confirm',
+          emailRedirectTo: 'https://nuxt-linktree.vercel.app/confirm',
         },
       })
       if (error?.message) {
@@ -58,10 +59,11 @@ const onSignUpClick = async () => {
 const onSignupWithGoogle = async () => {
   try {
     isLoadingGoogle.value = true
+    // for dev http://localhost:3000/confirm
     const { error } = await superClient.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: 'http://localhost:3000/confirm',
+        redirectTo: 'https://nuxt-linktree.vercel.app/confirm',
       },
     })
     if (error?.message) {
