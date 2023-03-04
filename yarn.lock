@@ -6995,9 +6995,9 @@ stylehacks@^5.1.1:
     postcss-selector-parser "^6.0.4"
 
 supabase@>=1.8.1:
-  version "1.41.4"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.41.4.tgz#f4bc80e960b97db93afea5e2f622e16657e88841"
-  integrity sha512-POeUcTkVfSpVYJSgqQWhXSGHz3HF0fgkrNW0eyo+ZS2eGJf+mtjNGLeyb+iPPCq/OeFeV0e1CJRpsAHhJ/gH6A==
+  version "1.41.6"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.41.6.tgz#cd1a488c19a0fc17b859c6cc33bbe916d4d70acd"
+  integrity sha512-vHsHpdDCsEpvyqScynIBR0FabTL/1lAT6QGVkMIFyZWngYIYLdCbA13gMVI9im7pMqutgxrzbOLJVYpGa/xg4g==
   dependencies:
     bin-links "^4.0.1"
     node-fetch "^3.2.10"

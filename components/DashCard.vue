@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useToast } from 'vue-toastification'
+import { useToast } from 'vue-toastification/dist/index.mjs'
 interface Props {
   userName: string
   collectionName: string
