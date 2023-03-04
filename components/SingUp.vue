@@ -34,6 +34,9 @@ const onSignUpClick = async () => {
       const { error } = await superClient.auth.signUp({
         email: email.value,
         password: pass.value,
+        options: {
+          emailRedirectTo: 'http://localhost:3000/confirm',
+        },
       })
       if (error?.message) {
         errMsg.value = error.message
@@ -44,6 +47,7 @@ const onSignUpClick = async () => {
         isLoading.value = false
       }
     }
+    else { isLoading.value = false }
   }
   catch (error) {
     console.log(error)

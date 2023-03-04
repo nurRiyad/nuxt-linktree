@@ -34,6 +34,7 @@ const onUpdateClick = async () => {
       }
       else { router.push('dashboard') }
     }
+    else { isLoading.value = false }
   }
   catch (error) {
     console.log(error)

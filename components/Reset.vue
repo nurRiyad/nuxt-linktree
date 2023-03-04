@@ -40,6 +40,7 @@ const onResetClick = async () => {
         isLoading.value = false
       }
     }
+    else { isLoading.value = false }
   }
   catch (error) {
     console.log(error)
