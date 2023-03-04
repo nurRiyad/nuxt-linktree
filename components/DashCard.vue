@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useToast } from 'vue-toastification/dist/index.mjs'
 interface Props {
   userName: string
   collectionName: string
@@ -14,7 +13,6 @@ const props = withDefaults(defineProps<Props>(), {
 defineEmits(['reFetchCollection'])
 
 const router = useRouter()
-const toast = useToast()
 const showModal = ref(false)
 
 const onEditClick = () => {
@@ -22,10 +20,14 @@ const onEditClick = () => {
 }
 
 const shareableLink = computed(() => `https://nuxt-linktree.vercel.app/${props.userName}/${props.collectionName}`)
+const showToast = ref(false)
 
 const onCopyClick = () => {
+  showToast.value = true
   navigator.clipboard.writeText(shareableLink.value)
-  toast.success(shareableLink.value)
+  setTimeout(() => {
+    showToast.value = false
+  }, 1500)
 }
 </script>
 
@@ -62,5 +64,12 @@ const onCopyClick = () => {
       @close-modal="$emit => showModal = false"
       @re-fetch-collection="$event => $emit('reFetchCollection')"
     />
+    <div :class="[{ toast: showToast }, { hidden: !showToast }]">
+      <div class="alert alert-info">
+        <div>
+          <span>Copied: {{ shareableLink }}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
