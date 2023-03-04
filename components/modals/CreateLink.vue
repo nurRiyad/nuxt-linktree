@@ -20,6 +20,7 @@ interface Props {
 
 const linkName = ref('')
 const linkUrl = ref('')
+const errMsg = ref('')
 const isCreating = ref(false)
 
 const rules = computed(() => {
@@ -51,6 +52,9 @@ const onAddClick = async () => {
         emit('reFetch')
         emit('closeModal')
       }
+      else {
+        errMsg.value = error.message
+      }
     }
   }
   catch (error) {
@@ -58,6 +62,10 @@ const onAddClick = async () => {
   }
   isCreating.value = false
 }
+
+watch(linkName, () => {
+  errMsg.value = ''
+})
 </script>
 
 <template>
@@ -94,6 +102,9 @@ const onAddClick = async () => {
       </div>
       <p v-if="validate.linkUrl.$error" class="text-error text-sm m-0">
         {{ validate.linkUrl.$errors[0].$message }}
+      </p>
+      <p v-if="errMsg" class="text-error text-sm m-0">
+        {{ errMsg }}
       </p>
       <div class="flex justify-end">
         <button

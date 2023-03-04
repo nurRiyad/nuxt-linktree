@@ -25,6 +25,7 @@ const superClient = useSupabaseClient<Database>()
 
 const linkNameModal = ref('')
 const linkUrlModal = ref('')
+const errMsg = ref('')
 const isUpdating = ref(false)
 
 const rules = computed(() => {
@@ -61,6 +62,9 @@ const onUpdateClick = async () => {
         emit('reFetch')
         emit('closeModal')
       }
+      else {
+        errMsg.value = error.message
+      }
     }
   }
   catch (error) {
@@ -68,6 +72,10 @@ const onUpdateClick = async () => {
   }
   isUpdating.value = false
 }
+
+watch(linkNameModal, () => {
+  errMsg.value = ''
+})
 </script>
 
 <template>
@@ -103,6 +111,9 @@ const onUpdateClick = async () => {
         >
         <p v-if="validate.linkUrlModal.$error" class="text-error text-sm m-0">
           {{ validate.linkUrlModal.$errors[0].$message }}
+        </p>
+        <p v-if="errMsg" class="text-error text-sm m-0">
+          {{ errMsg }}
         </p>
       </div>
       <div class="flex justify-end">

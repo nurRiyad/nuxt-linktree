@@ -18,6 +18,7 @@ const supabaseUser = useSupabaseUser()
 
 const collectionName = ref('')
 const collectionDes = ref('')
+const errMsg = ref('')
 const isCreating = ref(false)
 
 const rules = computed(() => {
@@ -48,6 +49,9 @@ const onAddClick = async () => {
         emit('reFetch')
         emit('closeModal')
       }
+      else {
+        errMsg.value = error.message
+      }
     }
   }
   catch (error) {
@@ -55,6 +59,10 @@ const onAddClick = async () => {
   }
   isCreating.value = false
 }
+
+watch(collectionName, () => {
+  errMsg.value = ''
+})
 </script>
 
 <template>
@@ -90,6 +98,9 @@ const onAddClick = async () => {
         >
         <p v-if="validate.collectionDes.$error" class="text-error text-sm m-0">
           {{ validate.collectionDes.$errors[0].$message }}
+        </p>
+        <p v-if="errMsg" class="text-error text-sm m-0">
+          {{ errMsg }}
         </p>
       </div>
       <div class="flex justify-end">

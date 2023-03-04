@@ -17,6 +17,7 @@ const emit = defineEmits(['closeModal', 'reFetch'])
 
 const supabaseClient = useSupabaseClient()
 const isDeleting = ref(false)
+const errMsg = ref('')
 
 const onDeleteClick = async () => {
   try {
@@ -32,6 +33,9 @@ const onDeleteClick = async () => {
     if (!linkError) {
       emit('reFetch')
       emit('closeModal')
+    }
+    else {
+      errMsg.value = linkError.message
     }
   }
   catch (error) {
@@ -61,6 +65,9 @@ const onDeleteClick = async () => {
           Proceed To <span class="text-error">Delete</span> This Link ?
         </p>
       </div>
+      <p v-if="errMsg" class="text-error text-sm m-0">
+        {{ errMsg }}
+      </p>
       <div class="flex justify-end">
         <button
           class="btn btn-error"
