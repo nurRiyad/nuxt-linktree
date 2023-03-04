@@ -76,6 +76,11 @@ const onSignupWithGoogle = async () => {
     isLoadingGoogle.value = false
   }
 }
+
+watch([email, confirmEmail, pass], () => {
+  errMsg.value = ''
+  sendMail.value = false
+})
 </script>
 
 <template>

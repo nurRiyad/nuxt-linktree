@@ -42,10 +42,8 @@ const onLogoutClick = async () => {
         </NuxtLink>
         <div v-else class="dropdown dropdown-end hover:text-primary pr-4">
           <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full ring-2">
-              <img
-                src="/rsz_1riyad.jpg"
-              >
+            <div class="w-10 rounded-full">
+              <Icon name="mdi:face-man" size="3em" />
             </div>
           </label>
           <ul

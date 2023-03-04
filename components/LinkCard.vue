@@ -19,10 +19,10 @@ defineEmits(['editClick', 'deleteClick'])
     </div>
     <div class="space-x-3">
       <button class="btn btn-sm  btn-primary" @click="$emit('editClick')">
-        Edit
+        <Icon name="mdi:circle-edit-outline" size="1em" color="while" />
       </button>
       <button class="btn btn-sm  btn-error" @click="$emit('deleteClick')">
-        Delete
+        <Icon name="ant-design:delete-outlined" size="1em" color="white" />
       </button>
     </div>
   </div>

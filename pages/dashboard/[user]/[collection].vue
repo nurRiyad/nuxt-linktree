@@ -43,16 +43,16 @@ const onDeleteClick = (id: number) => {
       <p class="text-lg md:text-2xl  lg:text-5xl font-bold">
         Top Ten {{ collection }} of {{ user }}
       </p>
-      <div class="space-x-4">
+      <div class="space-x-4 flex justify-center items-center md:pr-5">
         <NuxtLink
           class="btn btn-sm md:btn-md  btn-primary" :to="`/${user}/${collection}`"
         >
-          Preview
+          <Icon name="heroicons:arrow-top-right-on-square-20-solid" size="2em" />
         </NuxtLink>
         <button
           class="btn btn-sm md:btn-md  btn-primary" @click="showCreateModal = !showCreateModal"
         >
-          Create
+          <Icon name="heroicons:plus-circle" size="2em" />
         </button>
       </div>
     </div>

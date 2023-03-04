@@ -20,7 +20,7 @@ const { data: collection, pending, refresh: reFetchCollection } = await useFetch
       <button
         class="btn btn-sm md:btn-md  btn-primary" @click="showModal = !showModal"
       >
-        Create
+        <Icon name="heroicons:plus-circle" size="2em" />
       </button>
     </div>
     <div v-if="pending" class="w-full mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5">
