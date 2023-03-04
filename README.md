@@ -2,11 +2,31 @@
 This web app is a platform that allows users to create and share their own lists of their top 20 items in various categories such as songs, movies, or anime. The technology stack used for building this app includes Nuxt.js version 3, Supabase, Prisma, and Tailwind CSS. Users can log in and create their own lists, which are stored in a database and can be publicly shared with other users.
 
 
+
+## Features
+
+- Server Side Rendered
+- Signin, Signup with email and password
+- Signin, Signup with google
+- Reset Password options
+- Email Verification with link
+- Deployed in Vercel
+- Form Validation with vuelidate
+- Server side auth middleware
+- SEO Friendly
+- Use NuxtIcon for Icons
+- Use NuxtImg for optimized image view
+
+
 ## Preview
 
 <p align="center">
   <a href="https://nuxt-linktree.vercel.app/riyad/movies" target="_blank">
     <img width="1090" src="./assets/img/screely-1.png">
+    <img width="1090" src="./assets/img/screely-2.png">
+    <img width="1090" src="./assets/img/screely-3.png">
+    <img width="1090" src="./assets/img/screely-4.png">
+    <img width="1090" src="./assets/img/screely-5.png">
     <br>
     Live Demo
   </a>
@@ -36,10 +56,3 @@ yarn run build
 yarn run  preview
 
 ```
-
-## Need ToDo
-
-- [ ] Properly Redirect in SignIn/Login
-- [ ] Add Forget/Reset Pass options
-- [ ] Add Modal Validatoin 
-- [ ] Show Proper Error on API response 

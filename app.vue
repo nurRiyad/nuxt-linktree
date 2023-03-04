@@ -1,10 +1,10 @@
 <script setup>
 const description
-  = 'Nuxt LinkTree. Share your favorite link to other'
+  = 'Nuxt LinkTree. Share your favorite link with others'
 const ogTitle
-  = 'Nuxt LinkTree. Share your favorite link to other'
+  = 'Nuxt LinkTree. Share your favorite link with others'
 const twitterDescription
-  = 'Nuxt LinkTree. Share your favorite link to other'
+  = 'Nuxt LinkTree. Share your favorite link with others'
 const image
   = 'https://nuxt-linktree.vercel.app/preview.png'
 const mySite = 'https://nuxt-linktree.vercel.app/'

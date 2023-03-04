@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       viewport: 'width=device-width,initial-scale=1',
       title: 'Nuxt LinkTree',
       titleTemplate: '%s - Nuxt LinkTree',
-      meta: [{ name: 'description', content: 'Nuxt LinkTree. Share your favorite link to other' }],
+      meta: [{ name: 'description', content: 'Nuxt LinkTree. Share your favorite link with others' }],
     },
   },
 
