@@ -14,7 +14,7 @@ const onGetStartClick = () => {
           Nuxt LinkTree
         </h1>
         <p class="py-6">
-          A web app built with Nuxt.js v3, Supabase, Prisma and Tailwind CSS. Users can log in and create their own Top 20 lists (e.g. songs, movies, anime) and share them publicly.
+          A web app where users can authenticate and create their own favorite lists (e.g. songs, movies, anime) and share them publicly.Nuxt LinkTree built with Nuxtjs v3, Supabase, vuelidate and Tailwind CSS.
         </p>
         <button class="btn btn-primary" @click="onGetStartClick">
           Get Started

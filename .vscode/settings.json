@@ -7,9 +7,11 @@
   "files.associations": {
     "*.css": "postcss"
   },
+  "volar.inlayHints.eventArgumentInInlineHandlers": false,
   "cSpell.words": [
     "antfu",
     "daisyui",
+    "Nuxt",
     "nuxtjs",
     "supabase",
     "vuelidate",
