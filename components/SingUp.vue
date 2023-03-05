@@ -66,7 +66,7 @@ const onSignupWithGoogle = async () => {
         redirectTo: 'https://nuxt-linktree.vercel.app/confirm',
       },
     })
-    if (error?.message) {
+    if (error) {
       errMsg.value = error.message
       isLoading.value = false
     }
@@ -88,7 +88,7 @@ watch([email, confirmEmail, pass], () => {
     <div class="flex justify-center h-full items-center ">
       <div class="flex flex-col space-y-4 p-10 m-5 bg-base-200 rounded-lg shadow-md">
         <h1 class="text-3xl font-bold text-center text-primary pb-5">
-          Welcome !
+          Welcome!
         </h1>
 
         <input
