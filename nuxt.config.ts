@@ -12,11 +12,15 @@ export default defineNuxtConfig({
     },
   },
 
+  supabase: {
+    redirect: false,
+  },
+
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/robots',
     '@pinia/nuxt',
-    '@nuxt/image-edge',
+    '@nuxt/image',
     '@vueuse/nuxt',
     '@nuxtjs/supabase',
     'nuxt-icon',
