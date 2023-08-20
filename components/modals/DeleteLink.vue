@@ -19,7 +19,7 @@ const supabaseClient = useSupabaseClient()
 const isDeleting = ref(false)
 const errMsg = ref('')
 
-const onDeleteClick = async () => {
+async function onDeleteClick() {
   try {
     isDeleting.value = true
 

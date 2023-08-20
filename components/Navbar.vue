@@ -12,7 +12,7 @@ const isLoggedIn = computed(() => {
   else return false
 })
 
-const onLogoutClick = async () => {
+async function onLogoutClick() {
   try {
     isLoading.value = true
     const { error } = await superClient.auth.signOut()

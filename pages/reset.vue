@@ -21,7 +21,7 @@ const validate = useVuelidate(rules, { password })
 
 const errMsg = ref('')
 
-const onUpdateClick = async () => {
+async function onUpdateClick() {
   try {
     isLoading.value = true
     const result = await validate.value.$validate()

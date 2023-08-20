@@ -3,7 +3,7 @@ const user = useSupabaseUser()
 
 const router = useRouter()
 
-const onGetStartClick = () => {
+function onGetStartClick() {
   if (user.value)
     router.push('/dashboard')
 

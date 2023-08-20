@@ -1,4 +1,5 @@
 import { serverSupabaseClient } from '#supabase/server'
+
 export default eventHandler(async (event) => {
   const supabaseClient = serverSupabaseClient(event)
   const query = getQuery(event)

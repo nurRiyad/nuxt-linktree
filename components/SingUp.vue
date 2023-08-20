@@ -26,7 +26,7 @@ const validate = useVuelidate(rules, { email, confirmEmail, pass })
 const errMsg = ref('')
 const sendMail = ref(false)
 
-const onSignUpClick = async () => {
+async function onSignUpClick() {
   try {
     const result = await validate.value.$validate()
     if (result) {
@@ -56,7 +56,7 @@ const onSignUpClick = async () => {
   }
 }
 
-const onSignupWithGoogle = async () => {
+async function onSignupWithGoogle() {
   try {
     isLoadingGoogle.value = true
     // for dev http://localhost:3000/confirm

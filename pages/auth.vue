@@ -8,7 +8,7 @@ watchEffect(() => {
     navigateTo('/dashboard')
 })
 
-const onFormChange = (val: string) => {
+function onFormChange(val: string) {
   formName.value = val
 }
 </script>

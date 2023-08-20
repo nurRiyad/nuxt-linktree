@@ -21,7 +21,7 @@ const validate = useVuelidate(rules, { email })
 const errMsg = ref('')
 const infoMsg = ref('')
 
-const onResetClick = async () => {
+async function onResetClick() {
   try {
     isLoading.value = true
     const result = await validate.value.$validate()

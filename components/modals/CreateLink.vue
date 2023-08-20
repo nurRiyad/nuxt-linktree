@@ -32,7 +32,7 @@ const rules = computed(() => {
 
 const validate = useVuelidate(rules, { linkName, linkUrl })
 
-const onAddClick = async () => {
+async function onAddClick() {
   try {
     isCreating.value = true
     const result = await validate.value.$validate()

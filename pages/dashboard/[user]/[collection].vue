@@ -26,12 +26,12 @@ const activeLink = computed(() => {
   return acLink
 })
 
-const onEditLinkClick = (id: number) => {
+function onEditLinkClick(id: number) {
   activeLinkId.value = id
   showEditModal.value = !showEditModal.value
 }
 
-const onDeleteClick = (id: number) => {
+function onDeleteClick(id: number) {
   activeLinkId.value = id
   showDeleteModal.value = !showCreateModal.value
 }

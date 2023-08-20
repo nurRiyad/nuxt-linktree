@@ -18,7 +18,7 @@ const rules = computed(() => {
 
 const validate = useVuelidate(rules, { userName })
 
-const onUserCreateClick = async () => {
+async function onUserCreateClick() {
   try {
     const result = await validate.value.$validate()
     if (result)

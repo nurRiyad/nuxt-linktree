@@ -23,7 +23,7 @@
     "@vueuse/nuxt": "^10.1.0",
     "daisyui": "^2.51.6",
     "eslint": "^8.33.0",
-    "nuxt": "^3.4.3",
+    "nuxt": "^3.6.5",
     "nuxt-icon": "^0.4.0",
     "pinia": "^2.0.35",
     "supabase": "^1.52.2",

@@ -30,7 +30,7 @@ const rules = computed(() => {
 
 const validate = useVuelidate(rules, { collectionName, collectionDes })
 
-const onAddClick = async () => {
+async function onAddClick() {
   try {
     isCreating.value = true
     const result = await validate.value.$validate()

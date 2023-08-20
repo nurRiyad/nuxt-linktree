@@ -44,7 +44,7 @@ watchEffect(() => {
     linkUrlModal.value = props.linkUrl
 })
 
-const onUpdateClick = async () => {
+async function onUpdateClick() {
   try {
     isUpdating.value = true
 

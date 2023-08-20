@@ -15,14 +15,14 @@ defineEmits(['reFetchCollection'])
 const router = useRouter()
 const showModal = ref(false)
 
-const onEditClick = () => {
+function onEditClick() {
   router.push(`/dashboard/${props.userName}/${props.collectionName}`)
 }
 
 const shareableLink = computed(() => `https://nuxt-linktree.vercel.app/${props.userName}/${props.collectionName}`)
 const showToast = ref(false)
 
-const onCopyClick = () => {
+function onCopyClick() {
   showToast.value = true
   navigator.clipboard.writeText(shareableLink.value)
   setTimeout(() => {

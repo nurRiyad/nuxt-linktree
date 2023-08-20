@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const router = useRouter()
 
-const onGetStartClick = () => {
+function onGetStartClick() {
   router.push('/auth')
 }
 </script>
