@@ -7,12 +7,12 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/robots',
     'nuxt-simple-sitemap',
-    '@nuxtjs/supabase'
+    '@nuxtjs/supabase',
   ],
 
-  supabase:{
-    redirect: false
+  supabase: {
+    redirect: false,
   },
 
-  devtools: { enabled: true }
+  devtools: { enabled: true },
 })

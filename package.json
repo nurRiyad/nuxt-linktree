@@ -1,15 +1,18 @@
 {
   "name": "nuxt-app",
-  "private": true,
   "type": "module",
+  "private": true,
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.1.0",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.1.0",
     "@nuxt/ui": "^2.11.0",
@@ -19,6 +22,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@vueuse/nuxt": "^10.6.1",
+    "eslint": "^8.54.0",
     "nuxt": "^3.8.2",
     "nuxt-simple-sitemap": "^4.1.6",
     "pinia": "^2.1.7",
