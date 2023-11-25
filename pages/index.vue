@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div>
-    <h1>Home page</h1>
+  <div class="flex justify-center items-center h-full">
+    <Icon name="i-noto-christmas-tree" size="200" />
   </div>
 </template>
