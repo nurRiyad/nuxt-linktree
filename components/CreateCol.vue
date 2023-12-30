@@ -5,7 +5,6 @@ const isOpen = ref(false)
 <template>
   <div>
     <UButton label="Open" @click="isOpen = true" />
-
     <UModal v-model="isOpen" />
   </div>
 </template>
