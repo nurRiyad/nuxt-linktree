@@ -3,7 +3,7 @@ definePageMeta({
   middleware: ['auth'],
 })
 
-const { data, error } = useFetch('/api/collection')
+const { data, error, refresh } = useFetch('/api/collection')
 </script>
 
 <template>
@@ -12,7 +12,7 @@ const { data, error } = useFetch('/api/collection')
       <ULink v-for="d in data " :key="d.id" to="/dashboard" class="hover:shadow-2xl">
         <Collection :name="d.name" :des="d.description || '-'" />
       </ULink>
-      <EmptyCol />
+      <EmptyCol @re-fetch-collection="refresh()" />
     </template>
     <div v-else>
       <pre>{{ error?.message }}</pre>

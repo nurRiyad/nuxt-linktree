@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from '#ui/types'
+import type { Database } from '~/types/supabase'
+
+const emit = defineEmits(['reFetchCollection'])
+
+const client = useSupabaseClient<Database>()
+const user = useSupabaseUser()
+const toast = useToast()
+
+const isCreating = ref(false)
 
 const isOpen = ref(false)
 const state = reactive({
@@ -17,8 +26,28 @@ function validate(state: any): FormError[] {
 }
 
 async function onSubmit(event: FormSubmitEvent<any>) {
-  // Do something with data
-  console.log('-----', event.data)
+  isCreating.value = true
+  const { name, description } = event.data
+  if (user.value?.id) {
+    const { error } = await client.from('collection').insert({ name, description, user_id: user.value?.id })
+    if (error) {
+      toast.add({
+        title: error.message,
+        color: 'red',
+      })
+    }
+    else {
+      emit('reFetchCollection')
+      isOpen.value = false
+    }
+  }
+  else {
+    toast.add({
+      title: 'No LoggedIn User found',
+      color: 'red',
+    })
+  }
+  isCreating.value = false
 }
 </script>
 
@@ -48,10 +77,10 @@ async function onSubmit(event: FormSubmitEvent<any>) {
         </div>
         <template #footer>
           <div class="flex justify-between">
-            <UButton color="red" @click="isOpen = false">
+            <UButton color="red" :disabled="isCreating" @click="isOpen = false">
               Cancel
             </UButton>
-            <UButton type="submit">
+            <UButton type="submit" :loading="isCreating">
               Add
             </UButton>
           </div>
