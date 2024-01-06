@@ -23,10 +23,10 @@
     "@supabase/auth-ui-shared": "^0.1.8",
     "@vueuse/nuxt": "^10.6.1",
     "eslint": "^8.54.0",
-    "nuxt": "^3.8.2",
+    "nuxt": "^3.9.1",
     "nuxt-simple-sitemap": "^4.1.6",
     "pinia": "^2.1.7",
-    "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "vue": "^3.4.0",
+    "vue-router": "latest"
   }
 }
