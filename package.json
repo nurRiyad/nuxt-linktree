@@ -26,6 +26,7 @@
     "nuxt": "^3.9.1",
     "nuxt-simple-sitemap": "^4.1.6",
     "pinia": "^2.1.7",
+    "supabase": "^1.127.4",
     "vue": "^3.4.0",
     "vue-router": "latest"
   }

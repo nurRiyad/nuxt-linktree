@@ -1,10 +1,17 @@
+<script setup lang="ts">
+withDefaults(defineProps<{ name?: string, des?: string }>(), {
+  name: 'no-name',
+  des: 'no-des',
+})
+</script>
+
 <template>
   <UCard>
     <template #header>
-      <p>Movies</p>
+      <p>{{ name }}</p>
     </template>
     <div>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus, quidem!</p>
+      <p>{{ des }}</p>
     </div>
   </UCard>
 </template>
