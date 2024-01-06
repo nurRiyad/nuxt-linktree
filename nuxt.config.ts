@@ -13,6 +13,9 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
   },
+  runtimeConfig: {
+
+  },
 
   devtools: { enabled: true },
 })

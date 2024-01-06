@@ -1,3 +1,9 @@
+<script setup lang="ts">
+definePageMeta({
+  middleware: ['auth'],
+})
+</script>
+
 <template>
   <div>
     <div class="mt-10 flex flex-col justify-center">
