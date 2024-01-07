@@ -1,3 +1,11 @@
+<script setup lang="ts">
+const route = useRoute()
+
+const collectionId = route.params.cId
+
+console.log(collectionId)
+</script>
+
 <template>
   <div>
     <div class="mt-10 flex flex-col justify-center">

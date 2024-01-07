@@ -3,22 +3,18 @@ import type { Database } from '@/types/supabase'
 
 export default eventHandler(async (event) => {
   const client = await serverSupabaseClient<Database>(event)
-  const query = getQuery(event)
+  const user = await serverSupabaseUser(event)
 
-  const collectionId = query.id || ''
-
-  if (collectionId) {
+  if (user?.id) {
     const { data, error } = await client.from('collection')
       .select('id, name, description')
-      .eq('id', collectionId)
+      .eq('user_id', user.id)
 
     if (error)
-      return {}
-    else if (data.length)
-      return data[0]
-    else return {}
+      return []
+    else return data
   }
   else {
-    return {}
+    return []
   }
 })

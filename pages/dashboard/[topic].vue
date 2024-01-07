@@ -2,6 +2,11 @@
 definePageMeta({
   middleware: ['auth'],
 })
+
+const route = useRoute()
+
+const { data: collection } = useFetch(`/api/collection?id=${route.params.topic}`)
+const { data: links, refresh: reFetchLinks } = useFetch(`/api/links?id=${route.params.topic}`)
 </script>
 
 <template>
@@ -10,19 +15,20 @@ definePageMeta({
       <Avatar />
       <div class="flex flex-col items-center py-5">
         <h2 class="text-2xl font-semibold">
-          AL Asad Nur Riyad
+          {{ collection.name }}
         </h2>
-        <p>Software Engineer</p>
+        <p>{{ collection.description }}</p>
       </div>
     </div>
     <div class="grid gap-4 my-4">
-      <CreateItem />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
+      <CreateItem :col-id="collection.id" @re-fetch-links="reFetchLinks()" />
+      <Item
+        v-for="link in links"
+        :key="link.id"
+        :name="link.name"
+        :link="link.link"
+        :col-id="link.col_id"
+      />
     </div>
   </div>
 </template>

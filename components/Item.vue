@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from '#ui/types'
+import type { Database } from '~/types/supabase'
+
+const props = withDefaults(defineProps<{ name: string, link: string, colId: number | null }>(), {
+  name: '-',
+  link: '#',
+  colId: null,
+})
+
+const emit = defineEmits(['reFetchCollection'])
 
 const isOpen = ref(false)
 const state = reactive({
@@ -16,18 +25,42 @@ function validate(state: any): FormError[] {
   return errors
 }
 
+const client = useSupabaseClient<Database>()
+const toast = useToast()
+const isCreating = ref(false)
+
 async function onSubmit(event: FormSubmitEvent<any>) {
-  // Do something with data
-  console.log('-----', event.data)
+  isCreating.value = true
+  const { name, link } = event.data
+  if (props.colId) {
+    const { error } = await client.from('links').insert({ name, link, col_id: props.colId })
+    if (error) {
+      toast.add({
+        title: error.message,
+        color: 'red',
+      })
+    }
+    else {
+      emit('reFetchCollection')
+      isOpen.value = false
+    }
+  }
+  else {
+    toast.add({
+      title: 'No LoggedIn User found',
+      color: 'red',
+    })
+  }
+  isCreating.value = false
 }
 </script>
 
 <template>
-  <ULink to="/" class="hover:shadow-lg cursor-pointer">
+  <ULink :to="link" class="hover:shadow-lg cursor-pointer">
     <UCard>
       <div class="flex justify-between items-baseline">
         <p class="text-center">
-          Facebook
+          {{ name }}
         </p>
         <UButton
           icon="i-heroicons-pencil-square"
