@@ -1,9 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
-  imports:{
-    autoImport: false
-  },
   future:{
     compatibilityVersion: 4
   },
@@ -13,5 +10,14 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxt/eslint',
     'nuxt-auth-utils'
-  ]
+  ],
+  runtimeConfig:{
+    oauth:{
+      "github":{
+        "clientId": '',
+        "clientSecret": '',
+      
+      }
+    }
+  }
 })
