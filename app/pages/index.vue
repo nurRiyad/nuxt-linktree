@@ -11,7 +11,6 @@ const { loggedIn, user, session, clear } = useUserSession()
     <button @click="clear">Logout</button>
   </div>
   <div v-else>
-    <h1>Not logged in</h1>
-    <a class="p-3 mt-20 bg-blue-400" href="/api/auth/github">Login with GitHub</a>
+    <NuxtLink to="/auth">LigIn</NuxtLink>
   </div>
 </template>

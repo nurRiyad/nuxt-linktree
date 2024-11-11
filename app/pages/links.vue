@@ -1,9 +1,14 @@
 <script lang="ts" setup>
 
+
+definePageMeta({
+  middleware:['auth']
+})
+
 </script>
 
 <template>
   <div>
-    <h1>Todos</h1>
+    <h1>Links</h1>
   </div>
 </template>
