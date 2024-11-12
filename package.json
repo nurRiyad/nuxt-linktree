@@ -1,33 +1,30 @@
 {
+  "name": "nuxt-linktree",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port=3000",
+    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "db:generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.14.0",
+    "h3-zod": "^0.5.3",
+    "nuxt": "^3.14.159",
+    "vue": "latest",
+    "vue-router": "latest",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.38.5",
-    "@nuxt/image-edge": "^1.0.0-27919678.2f5b64b",
-    "@nuxtjs/robots": "^3.0.0",
-    "@nuxtjs/supabase": "^0.3.5",
-    "@nuxtjs/tailwindcss": "^6.3.1",
-    "@pinia/nuxt": "^0.4.9",
-    "@tailwindcss/typography": "^0.5.9",
-    "@vuelidate/core": "^2.0.0",
-    "@vuelidate/validators": "^2.0.0",
-    "@vueuse/core": "^10.1.0",
-    "@vueuse/nuxt": "^10.1.0",
-    "daisyui": "^2.51.6",
-    "eslint": "^8.33.0",
-    "nuxt": "^3.6.5",
-    "nuxt-icon": "^0.4.0",
-    "pinia": "^2.0.35",
-    "supabase": "^1.52.2",
-    "typescript": "^4.9.5",
-    "vue-content-loader": "^2.0.1"
-  }
+    "@nuxt/eslint": "^0.6.1",
+    "@nuxtjs/tailwindcss": "^6.12.2",
+    "@vueuse/nuxt": "^11.2.0",
+    "drizzle-kit": "^0.28.0",
+    "drizzle-orm": "^0.36.1",
+    "nuxt-auth-utils": "^0.5.2"
+  },
+  "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b"
 }
