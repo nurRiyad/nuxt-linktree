@@ -16,8 +16,11 @@ export default defineNuxtConfig({
       "github":{
         "clientId": '',
         "clientSecret": '',
-      
       }
-    }
+    },
+    turso: {
+      databaseUrl: "",
+      authToken: "",
+    },
   }
 })
