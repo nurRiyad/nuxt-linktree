@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",
+    "h3-zod": "^0.5.3",
     "nuxt": "^3.14.159",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.6.1",
