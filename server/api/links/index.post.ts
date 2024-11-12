@@ -6,10 +6,9 @@ export default eventHandler(async (event) => {
     url: z.string().min(4).max(100)
   })
   const { user } = await requireUserSession(event)
-  const db =  useDb()
 
   // Insert link for the current user
-  const link = await db.insert(tables.links).values({
+  const link = await useDb().insert(tables.links).values({
     userId: user.id,
     name,
     url,

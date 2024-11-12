@@ -1,16 +1,18 @@
 <script lang="ts" setup>
 
-const { loggedIn, user, session, clear } = useUserSession()
+const { loggedIn } = useUserSession()
 
 </script>
 
 <template>
-  <div v-if="loggedIn" class="text-4xl" >
-    <h1>Welcome {{ user?.login || '--' }}!</h1>
-    <p>Logged in since {{ session.loggedInAt }}</p>
-    <button @click="clear">Logout</button>
-  </div>
-  <div v-else>
-    <NuxtLink to="/auth">LigIn</NuxtLink>
+  <div class="flex flex-col items-center space-y-3">
+    <h1 class="text-3xl font-bold">Welcome To Nuxt LinkTree</h1>
+    <p>Share Your link from one place</p>
+    <div v-if="!loggedIn" class="pt-5">
+      <NuxtLink class="bg-blue-600 p-4 m-2 rounded-md text-white" to="/auth">Sign In With GitHub</NuxtLink>
+    </div>
+    <div v-else class="pt-5">
+      <NuxtLink class="bg-blue-600 p-4 m-2 rounded-md text-white" to="/links">Start Adding Links</NuxtLink>
+    </div>
   </div>
 </template>
