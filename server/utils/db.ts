@@ -4,6 +4,9 @@ import * as schema from "../database/schema";
 
 
 export const useDb = () =>{
+
+  console.log(process.env)
+
   const database = createClient({
     url: process.env.NUXT_TURSO_DATABASE_URL!,
     authToken: process.env.NUXT_TURSO_AUTH_TOKEN!,
