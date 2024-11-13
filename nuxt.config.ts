@@ -7,9 +7,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@vueuse/nuxt',
-    '@nuxtjs/tailwindcss',
     '@nuxt/eslint',
-    'nuxt-auth-utils'
+    'nuxt-auth-utils',
+    '@nuxt/ui'
   ],
   runtimeConfig:{
     oauth:{
