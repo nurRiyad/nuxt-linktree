@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const { loggedIn } = useUserSession()
 
 watch(loggedIn, () => {
@@ -7,16 +6,13 @@ watch(loggedIn, () => {
     navigateTo('/')
   }
 })
-
-
 </script>
-
 
 <template>
   <div>
     <NuxtRouteAnnouncer />
     <NuxtLayout>
-      <NuxtPage/>
+      <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
