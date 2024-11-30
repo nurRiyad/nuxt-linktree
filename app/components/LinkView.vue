@@ -19,7 +19,7 @@ const showEditModal = ref(false)
     <a
       :href="url"
       target="_blank"
-      class="text-center flex-1 text-gray-700 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 truncate"
+      class="flex-1 text-gray-700 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 truncate"
     >
       {{ name }}
     </a>

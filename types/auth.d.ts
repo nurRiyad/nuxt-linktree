@@ -4,6 +4,7 @@ declare module '#auth-utils' {
     login: string
     avatar_url: string
     name: string
+    bio: string
   }
 }
 export {}
