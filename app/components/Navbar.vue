@@ -20,7 +20,7 @@ const items = [
 </script>
 
 <template>
-  <div class="text-xl py-5 border-b-gray-800 border-b">
+  <div class="sm:text-xl py-5 border-b-gray-800 border-b px-4 sm:px-0">
     <nav class="flex justify-between h-8 items-center max-w-2xl mx-auto">
       <ULink active-class="text-primary" to="/">Home </ULink>
       <div v-if="loggedIn" class="space-x-4">
