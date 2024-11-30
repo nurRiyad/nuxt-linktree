@@ -40,11 +40,8 @@ const handleDelete = async () => {
         </div>
       </template>
 
-      <p class="py-4">
-        Are you sure you want to delete "{{ name }}"? This action cannot be undone.
-      </p>
+      <p class="py-4">Are you sure you want to delete "{{ name }}"?</p>
 
-      <pre>{{ isDeleting }}</pre>
       <template #footer>
         <div class="flex justify-end gap-3">
           <UButton color="gray" @click="model = false"> Cancel </UButton>

@@ -9,6 +9,7 @@ defineProps<{
 defineEmits(['editLink', 'deleteLink'])
 
 const showDeleteModal = ref(false)
+const showEditModal = ref(false)
 </script>
 
 <template>
@@ -29,7 +30,7 @@ const showDeleteModal = ref(false)
         icon="i-heroicons-pencil-square"
         size="sm"
         class="dark:hover:bg-gray-700"
-        @click.stop="$emit('editLink')"
+        @click.stop="showEditModal = true"
       />
       <UButton
         color="red"
@@ -42,4 +43,5 @@ const showDeleteModal = ref(false)
     </div>
   </div>
   <DeleteModal :id="id" v-model="showDeleteModal" :name="name" :url="url" @on-delete="reFetch()" />
+  <EditModal :id="id" v-model="showEditModal" :name="name" :url="url" @on-delete="reFetch()" />
 </template>
