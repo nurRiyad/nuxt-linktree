@@ -23,7 +23,10 @@ const items = [
   <div class="text-xl py-5 border-b-gray-800 border-b">
     <nav class="flex justify-between h-8 items-center max-w-2xl mx-auto">
       <ULink active-class="text-primary" to="/">Home </ULink>
-      <ULink v-if="loggedIn" active-class="text-primary" to="/links">Links</ULink>
+      <div v-if="loggedIn" class="space-x-4">
+        <ULink active-class="text-primary" to="/links">Links</ULink>
+        <ULink active-class="text-primary" :to="`/links/${user?.login}`">Preview</ULink>
+      </div>
       <div>
         <template v-if="loggedIn && user">
           <UDropdown

@@ -3,13 +3,7 @@ defineProps<{
   name: string
   url: string
   id: number
-  reFetch: () => Promise<void>
 }>()
-
-defineEmits(['editLink', 'deleteLink'])
-
-const showDeleteModal = ref(false)
-const showEditModal = ref(false)
 </script>
 
 <template>
@@ -27,21 +21,10 @@ const showEditModal = ref(false)
       <UButton
         color="gray"
         variant="ghost"
-        icon="i-heroicons-pencil-square"
+        icon="mdi:rocket-launch-outline"
         size="sm"
         class="dark:hover:bg-gray-700"
-        @click.stop="showEditModal = true"
-      />
-      <UButton
-        color="red"
-        variant="ghost"
-        icon="i-heroicons-trash"
-        size="sm"
-        class="dark:hover:bg-gray-700"
-        @click.stop="showDeleteModal = true"
       />
     </div>
   </div>
-  <DeleteModal :id="id" v-model="showDeleteModal" :name="name" :url="url" @on-delete="reFetch()" />
-  <EditModal :id="id" v-model="showEditModal" :name="name" :url="url" @on-delete="reFetch()" />
 </template>

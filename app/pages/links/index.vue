@@ -21,9 +21,12 @@ const handleEditLink = async (id: number) => {
     </div>
 
     <!-- Add create link button with better styling -->
-    <div class="mt-10 flex justify-center">
+    <div class="mt-10 flex justify-center space-x-4">
       <UButton icon="i-heroicons-plus" color="primary" @click="showCreateModal = true">
         Create New Link
+      </UButton>
+      <UButton :to="`/links/${user?.login}`" icon="tabler:external-link" color="primary">
+        Preview
       </UButton>
       <CreateModal v-model="showCreateModal" :re-fetch="refresh" />
     </div>
