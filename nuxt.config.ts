@@ -5,9 +5,6 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
   devtools: { enabled: true },
-  tailwindcss: {
-    exposeconfig: true,
-  },
   modules: ['@vueuse/nuxt', '@nuxt/eslint', 'nuxt-auth-utils', '@nuxt/ui'],
   runtimeConfig: {
     oauth: {

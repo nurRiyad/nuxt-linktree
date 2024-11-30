@@ -4,7 +4,7 @@ definePageMeta({
 })
 
 const { user } = useUserSession()
-const { data: links, refresh } = useFetch('/api/links')
+const { data: links, refresh, status } = useFetch('/api/links')
 
 const showCreateModal = ref(false)
 
@@ -30,7 +30,13 @@ const handleEditLink = async (id: number) => {
 
     <!-- Add links list -->
     <div class="mt-8 space-y-2 max-w-3xl mx-auto">
-      <template v-if="links">
+      <template v-if="status === 'pending'">
+        <USkeleton class="h-10" />
+        <USkeleton class="h-10" />
+        <USkeleton class="h-10" />
+        <USkeleton class="h-10" />
+      </template>
+      <template v-else-if="links && links.length > 0">
         <LinkView
           v-for="link in links"
           :id="link.id"
