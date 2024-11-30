@@ -1,42 +1,36 @@
-# Nuxt Minimal Starter
+# LinkTree
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Easily share all your links at once.
 
-## Setup
+### Built with
+
+- Nuxt 3, Github OAuth LibSQL, Vercel,
+
+### Preview
+
+<p align="center">
+  <a href="https://hnews-nurriyad.netlify.com" target="_blank">
+    <img width="1090" src="./app/assets/p0.png">
+    <img width="1090" src="./app/assets/p1.png">
+    <img width="1090" src="./app/assets/p2.png">
+    <br>
+    Live Demo
+  </a>
+</p>
+
+## Demo
+
+https://hnews-nurriyad.netlify.app/
+
+> Hosted on [Netlify](https://netlify.com/): `npm run build`
+
+## Features
+
+- Server Side Rendering
+- Login With Github
+- Easily Share all your link
 
 Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
 
 ## Production
 
