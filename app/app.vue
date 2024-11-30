@@ -6,6 +6,11 @@ watch(loggedIn, () => {
     navigateTo('/')
   }
 })
+
+useSeoMeta({
+  title: 'Nuxt LinkTree',
+  description: 'A simple linktree clone built with Nuxt.js',
+})
 </script>
 
 <template>
