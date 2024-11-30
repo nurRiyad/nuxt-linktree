@@ -9,7 +9,7 @@ Easily share all your links at once.
 ### Preview
 
 <p align="center">
-  <a href="https://hnews-nurriyad.netlify.com" target="_blank">
+  <a href="https://linktree.nurriyad.com" target="_blank">
     <img width="1090" src="./app/assets/p0.png">
     <img width="1090" src="./app/assets/p1.png">
     <img width="1090" src="./app/assets/p2.png">
@@ -20,9 +20,7 @@ Easily share all your links at once.
 
 ## Demo
 
-https://hnews-nurriyad.netlify.app/
-
-> Hosted on [Netlify](https://netlify.com/): `npm run build`
+https://linktree.nurriyad.com
 
 ## Features
 
