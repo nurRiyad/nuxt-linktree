@@ -14,5 +14,6 @@ watch(loggedIn, () => {
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+    <UNotifications />
   </div>
 </template>

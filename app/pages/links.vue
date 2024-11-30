@@ -4,9 +4,13 @@ definePageMeta({
 })
 
 const { user } = useUserSession()
-const { data: links } = useFetch('/api/links')
+const { data: links, refresh } = useFetch('/api/links')
 
-const createLink = () => {}
+const showCreateModal = ref(false)
+
+const handleEditLink = async (id: number) => {
+  console.log(id)
+}
 </script>
 
 <template>
@@ -18,9 +22,10 @@ const createLink = () => {}
 
     <!-- Add create link button with better styling -->
     <div class="mt-10 flex justify-center">
-      <UButton icon="i-heroicons-plus" color="primary" @click="createLink">
+      <UButton icon="i-heroicons-plus" color="primary" @click="showCreateModal = true">
         Create New Link
       </UButton>
+      <CreateModal v-model="showCreateModal" :re-fetch="refresh" />
     </div>
 
     <!-- Add links list -->
@@ -32,20 +37,11 @@ const createLink = () => {}
           :key="link.id"
           :name="link.name"
           :url="link.url"
+          :re-fetch="refresh"
+          @edit-link="handleEditLink"
         />
       </template>
-
-      <div
-        v-else
-        class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow transition-shadow border border-gray-100 dark:border-gray-700"
-      >
-        <a
-          target="_blank"
-          class="flex-1 text-gray-700 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 truncate"
-        >
-          No Link Available
-        </a>
-      </div>
+      <EmptyLink v-else />
     </div>
   </div>
 </template>
