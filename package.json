@@ -13,7 +13,7 @@
   "dependencies": {
     "@libsql/client": "^0.14.0",
     "h3-zod": "^0.5.3",
-    "nuxt": "^3.14.159",
+    "nuxt": "^3.16.0",
     "vue": "latest",
     "vue-router": "latest",
     "zod": "^3.23.8"
